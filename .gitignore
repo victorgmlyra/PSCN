@@ -8,6 +8,7 @@ __pycache__
 # data
 data/*
 tests/*
+checkpoints/*
 
 # C extensions
 *.so

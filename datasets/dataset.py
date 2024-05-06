@@ -89,8 +89,8 @@ class ShapenetDataset(Dataset):
                 Normalize(),
                 PartialView(radius=1.4, r_scale=40),
                 SamplePoints(self.in_npoints, self.gt_npoints),
-                # AddNoise(),
-                # AddRandomPoints(0.02),
+                AddNoise(),
+                AddRandomPoints(0.02),
             ])
         else: # test
             self.transform = transforms.Compose([
