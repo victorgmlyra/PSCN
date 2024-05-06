@@ -38,9 +38,9 @@ for data in data_loader:
     gt_pcd.points = o3d.utility.Vector3dVector(gt.numpy()[0])
     gt_pcd.colors = o3d.utility.Vector3dVector(read_pointnet_colors(segs.numpy()[0]))
     # o3d.visualization.draw_geometries([pcd])
-    o3d.visualization.draw_plotly([in_pcd])
+    # o3d.visualization.draw_plotly([in_pcd])
 
-    # o3d.io.write_point_cloud("input.ply", in_pcd)
-    # o3d.io.write_point_cloud("gt.ply", gt_pcd)
+    o3d.io.write_point_cloud("input.ply", in_pcd)
+    o3d.io.write_point_cloud("gt.ply", gt_pcd)
 
     break

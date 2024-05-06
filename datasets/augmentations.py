@@ -97,9 +97,10 @@ class Rotate(object):
 
 class PartialView(object):
     """ Gets random partial view of the object """
-    def __init__(self, radius=1, r_scale= 50):
+    def __init__(self, radius=1, r_scale= 50, random=True):
         self.r = radius
         self.r_scale = r_scale
+        self.random = random
 
     def __call__(self, sample):
         points, seg = sample['gt_points'], sample['seg']
@@ -114,8 +115,12 @@ class PartialView(object):
         return {"in_points": np.asarray(partial_pcd.points), "gt_points": points, "seg": seg}
     
     def random_point_on_unit_sphere(self):
-        phi = np.random.uniform(0, 2 * np.pi)
-        theta = np.random.uniform(0, np.pi)
+        if self.random:
+            phi = np.random.uniform(0, 2 * np.pi)
+            theta = np.random.uniform(0, np.pi)
+        else:
+            phi = np.pi/4
+            theta = np.pi/4
 
         # Spherical to Cartesian conversion
         x = self.r * np.sin(theta) * np.cos(phi)
